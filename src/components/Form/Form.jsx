@@ -1,6 +1,5 @@
 import { FiSearch } from 'react-icons/fi';
 import style from './Form.module.css';
-import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { addTodo } from 'reduxTodo/todosSlice';
 
@@ -11,7 +10,7 @@ export const Form = () => {
     e.preventDefault();
     const value = e.target.search.value;
 
-    const todo = { id: nanoid(), text: value };
+    const todo = { text: value };
 
     dispatch(addTodo(todo));
   };
