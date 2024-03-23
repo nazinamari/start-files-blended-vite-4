@@ -1,10 +1,23 @@
 import { FiSearch } from 'react-icons/fi';
-
 import style from './Form.module.css';
+import { nanoid } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { addTodo } from 'reduxTodo/todosSlice';
 
 export const Form = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const value = e.target.search.value;
+
+    const todo = { id: nanoid(), text: value };
+
+    dispatch(addTodo(todo));
+  };
+
   return (
-    <form className={style.form}>
+    <form className={style.form} onSubmit={handleSubmit}>
       <button className={style.button} type="submit">
         <FiSearch size="16px" />
       </button>
